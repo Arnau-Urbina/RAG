@@ -1,5 +1,5 @@
 # RAG 
-This demo is designed to test RAG and see that the chunk returned by the retriever contains information to answer the question. In this demo there are 4 tabs: Chunks, Embeddings, Query and Retrieval. 
+This demo is designed to test RAG and see that the chunk returned by the retriever contains information to answer the question. In this demo there are 6 tabs: Chunks, Embeddings, Query, Retrieval, Generation and Metrics. 
 
 ## Chunks  
 In this first tab we load all the HTML documents we want to use and choose the method and parameters we want to chunking. Then the chunks of each document and their tokens will be printed in order. 
