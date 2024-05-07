@@ -3,11 +3,13 @@ import pandas as pd
 
 
 def tab_query():
-    st.header('Load the query and ground_truth')
-    
-    data_file = st.file_uploader("Upload the CSV or XLSX file with the questions and the ground truth:", type=["csv", "xlsx"], key = "input_uploader")
+    """
+    Load the query and ground truth. 
+    """
+    st.header('Load the query and ground truth')
     
     # 1. Option to upload a csv or xlsx file
+    data_file = st.file_uploader("Upload the CSV or XLSX file with the questions and the ground truth:", type=["csv", "xlsx"], key = "input_uploader")
     if data_file is not None:
         df = pd.read_csv(data_file) if data_file.name.endswith('.csv') else pd.read_excel(data_file)
         questions = df['questions'].tolist()
