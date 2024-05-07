@@ -12,11 +12,10 @@ from langchain_openai import OpenAIEmbeddings
 def embed(name_model, text):
   if name_model == 'text-embedding-3-large': 
     model = OpenAIEmbeddings(model = 'text-embedding-3-large')
-    embeddings = model.embed_documents(text)
+    return model.embed_documents(text)
   else: 
     model = SentenceTransformer(name_model)
-    embeddings = model.encode(text, normalize_embeddings = True)
-  return embeddings 
+    return model.encode(text, normalize_embeddings = True) 
 
 ### To graph embeddings with UMAP
 def project_embeddings(embeddings, umap_transform):
