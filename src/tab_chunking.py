@@ -27,6 +27,7 @@ def tokens(string:str) -> int:
 def chunks(type, uploaded_file, size = 0, overlap = 0, embeddings = OpenAIEmbeddings(model = 'text-embedding-3-large')):
     loader = BSHTMLLoader(uploaded_file, open_encoding='utf-8')
     doc = loader.load()
+
     if type == 'CharacterTextSplitter': 
         chunks = CharacterTextSplitter(chunk_size = size, chunk_overlap = overlap).split_documents(doc)
     elif type == 'RecursiveCharacterTextSplitter':
@@ -39,7 +40,11 @@ def chunks(type, uploaded_file, size = 0, overlap = 0, embeddings = OpenAIEmbedd
         chunks = semantic_text_splitter.split_text_to_documents(doc[0].page_content) 
     return chunks
 
-def jordi_tool_header(llm = ChatOpenAI(), uploaded_file = None):
+def header(llm = ChatOpenAI(), uploaded_file = None):
+    """
+    This way of chunking uses functions from the pdt library. First, it transforms the tables to a List,
+    then it transform the HTML tags to markdown and finally it splits the text by HTML header. 
+    """ 
     header = { #Combination of three functions for separating documents by headers
       "name": "by header",
       "pipeline": [
@@ -123,7 +128,7 @@ def tab_chunk():
             chunks_gen = []
             for uploaded_file in uploaded_files:
                 if tipe == "Jordi": 
-                    split = jordi_tool_header(uploaded_file = uploaded_file.name)
+                    split = header(uploaded_file = uploaded_file.name)
                 else: 
                     split = chunks(tipe,  uploaded_file.name, chunk_size, overlap)
                     for i in split: i.metadata['title'] = uploaded_file.name
@@ -135,7 +140,4 @@ def tab_chunk():
                     st.write(f"**Tokens:** {tokens(chunk.page_content)}")
                     st.write("---")
             st.session_state['chunks_gen'] = chunks_gen
-
-
-
 
