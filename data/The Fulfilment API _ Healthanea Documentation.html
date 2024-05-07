@@ -1,0 +1,314 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>The Fulfilment API | Healthanea Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="The Fulfilment API | Healthanea Documentation ">
+    <meta name="generator" content="docfx 2.59.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/dhp.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+
+    <aside role="navigation" id="sidebar">
+      <header>
+        
+        <nav class="ng-scope" role="navigation">
+          <div class="navbar-container">
+            <div class="navbar-header">
+              
+              <a class="dhp-navbar-brand" href="../../index.html">
+                <div>
+                  <img id="logo" class="svg" src="../../logo.png" alt="">
+                  <!-- <span>Digital Healthcare Platform</span> -->
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <form class="navbar-form" role="search" id="search">
+            <div class="form-group">
+              <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+            </div>
+          </form>
+        
+          <div class="navbar-collapse" id="navbar">
+              <!-- top level menu -->
+          </div>
+        </nav>
+      </header>
+
+      <div class="sidebar-content">
+        <div class="sidebar-item-separator"></div>
+
+        
+        <div class="sidenav">
+          <div class="sidetoggle" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="footer">
+        <div class="footer-container">
+          <img class="footer-logo" src="../../healthanea.png">
+          <div>
+            <span>&copy; DHP SAS</span>
+            <span id="version"> Version: 160211a-facd43ecf </span>
+          </div>
+        </div>
+      </div>
+    </aside>
+        
+    <main class="main-panel">
+      <div class="main-header-container">
+        <div class="main-header">
+          
+          <div class="subnav navbar navbar-default">
+            <div id="breadcrumb">
+              <ul class="breadcrumb">
+                <li></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="article row grid-right hide-when-search">
+
+
+        <div class="col-md-10">
+        
+          <article class="content wrap" id="_content" data-uid="fulfilment-api">
+<h1 id="fulfilment-api">Fulfilment API</h1>
+
+<p><em>See also the <a href="../reference/dhp-front-api-v1.html" title="API specification (Swagger)">API specification (Swagger)</a> and <a class="xref" href="api-error-management.html" title="Error management">Error management</a></em></p>
+<hr>
+
+<p>The Fulfilment API is used by Producers to authorize Service Providers to access and update the medical data of their services' end-users (who are the Producers' customers), while also tracking the interactions between an end-user and a service.</p>
+<p><em>See also:</em></p>
+<ul>
+<li>Concept: <em><a class="xref" href="../concepts/concept-fulfilment.html">Service fulfilment</a></em></li>
+<li>API tutorial: <em><a class="xref" href="../tutorials/tutorial-fulfilment.html">Create a fulfilment to authorize a service</a></em></li>
+</ul>
+<p><img src="../../assets/images/icon-fulfilment-camera.png" style="width:150px;height:150px;"> <br></p>
+<p>In this article:</p>
+<ul>
+<li><a class="xref" href="api-fulfilment.html#whatis">What is the Fulfilment API?</a></li>
+<li><a class="xref" href="api-fulfilment.html#flow">Flow</a></li>
+<li><a class="xref" href="api-fulfilment.html#int">Integration</a></li>
+<li><a class="xref" href="api-fulfilment.html#inthepast">Sending service fulfilment data asynchronously</a></li>
+<li><a class="xref" href="api-fulfilment.html#portal">Healthanea portal</a></li>
+<li><a class="xref" href="api-fulfilment.html#ts">Troubleshooting</a></li>
+</ul>
+<h2 id="whatis">What is the Fulfilment API?</h2>
+<p>The Fulfilment API is used by Producers to authorize Service Providers to execute a healthcare service to end-users through the Healthanea platform. This authorization is called a <em>fulfilment instance</em>, and is needed by the service to exchange end-users' health data with Healthanea.</p>
+<p>A fulfilment instance is also used to record the interactions between an end-user and a service for analytics purposes and for further personalization of the end-user's experience.</p>
+<p>The service fulfilment concept is founded on a <em>fulfilment ID</em>, which represents the authorization by a Producer to allow a Service Provider to interact with the Healthanea platform in a specific end-user context. The Service Provider needs this fulfilment ID to be able to exchange data (both medical and usage) for an end-user.</p>
+<p>In addition to authorizing a Service Provider to exchange medical data, the Fulfilment API allows the tracking of actions triggered by the service while interacting with the end-user. These actions are typically used for analytics and usage reports, such as recording service start and stop times and completion details.</p>
+<p>Actions can trigger the closure of a fulfilment so that further health data changes are no longer allowed.</p>
+<h2 id="flow">Flow</h2>
+<p><img src="../../assets/images/api-flow-fulfilment.png" style="width:1000px;"> <br></p>
+<h2 id="int">Integration</h2>
+<table style="border:1px solid #d3d3d3;">
+<th style="background-color:#FFFFEE;color:#000000" width="100%">Roles:<li>Producer Channel & Service (except for creating fulfilment instances)</li></th>
+</table>
+<br>
+<p>The following sections describe the endpoints of the Fulfilment API. These assume successful calls to the API; for unsuccessful requests, see <a class="xref" href="api-fulfilment.html#ts">Troubleshooting</a>. For more details, see the tutorial <a class="xref" href="../tutorials/tutorial-fulfilment.html">Create a fulfilment to authorize a service</a>.</p>
+<h3 id="create-a-fulfilment-id">Create a fulfilment ID</h3>
+<table style="border:1px solid #d3d3d3;">
+<th style="background-color:#FFFFEE;color:#000000" width="100%">Role:<li>Producer Channel</li></th>
+</table>
+<br>
+<p>Use a POST on the <code>fulfilment/instance</code> endpoint:</p>
+<pre><code class="lang-http">POST https://api-nxt.dhpbuild.com/api/dhp/v1/fulfilment/instance
+</code></pre>
+<p>You must include a request body with the following structure:</p>
+<pre><code class="lang-json">{
+  &quot;serviceId&quot;: &quot;string&quot;,
+  &quot;journeyId&quot;: &quot;string&quot;,
+  &quot;dhpUserId&quot;: &quot;string&quot;,
+  &quot;deviceId&quot;: &quot;string&quot;,
+  &quot;startDate&quot;: &quot;string&quot;
+}
+</code></pre>
+<p>The identifiers are described as follows:</p>
+<ul>
+<li><strong><code>serviceId</code>:</strong> The identifier of the service authorized to interact with the Healthanea platform.</li>
+<li><strong><code>journeyId</code>:</strong> The session identifier, managed by the Producer Channel, used to link multiple service executions by a single end-user during a healthcare journey. (The maximum allowed length of the <code>journeyId</code> is 100 characters.)</li>
+<li><strong><code>dhpUserId</code>:</strong> The identifier of the end-user whose actions can be tracked by the Producer Channel and for whom the authorized service can send and retrieve health data.</li>
+<li><strong><code>deviceId</code>:</strong> (optional) The ID of the end-user's device associated with the journey context. (The maximum allowed length of the <code>deviceId</code> is 100 characters.)</li>
+<li><strong><code>startDate</code>:</strong> (optional) The start date and time of the fulfilment; often used for asynchronous sending of fulfilment data to the Healthanea platform. See <a class="xref" href="api-fulfilment.html#inthepast">Sending service fulfilment data asynchronously</a>.</li>
+</ul>
+<p>If the request is successful, Healthanea returns a <code>201</code> status code and a response body containing the new fulfilment ID.</p>
+<h3 id="get-the-properties-of-a-fulfilment-instance">Get the properties of a fulfilment instance</h3>
+<table style="border:1px solid #d3d3d3;">
+<th style="background-color:#FFFFEE;color:#000000" width="100%">Roles:<li>Producer Channel & Service</li></th>
+</table>
+<br>
+<p>Use a GET on the <code>fulfilment/instance</code> endpoint:</p>
+<pre><code class="lang-http">GET https://api-nxt.dhpbuild.com/api/dhp/v1/fulfilment/instance/{fulfilmentId}
+</code></pre>
+<p>In the request URL, you must include a <code>fulfilmentId</code>, the identifier of the fulfilment instance.</p>
+<p>If the request is successful, Healthanea returns a <code>200</code> HTTP status code and a response body containing the details of the fulfilment instance:</p>
+<pre><code class="lang-json">{
+  &quot;id&quot;: &quot;string&quot;,
+  &quot;producerId&quot;: &quot;string&quot;,
+  &quot;producerChannelId&quot;: &quot;string&quot;,
+  &quot;serviceId&quot;: &quot;string&quot;,
+  &quot;serviceProviderId&quot;: &quot;string&quot;,
+  &quot;journeyId&quot;: &quot;string&quot;,
+  &quot;deviceId&quot;: &quot;string&quot;,
+  &quot;dhpUserId&quot;: &quot;string&quot;,
+  &quot;timestamp&quot;: &quot;string&quot;,
+  &quot;expirationTimestamp&quot;: &quot;string&quot;,
+  &quot;dataExchangeCompletionActionTypeIds&quot;: [
+    &quot;string&quot;
+  ]
+}
+</code></pre>
+<h3 id="add-an-action-to-a-fulfilment-instance">Add an action to a fulfilment instance</h3>
+<table style="border:1px solid #d3d3d3;">
+<th style="background-color:#FFFFEE;color:#000000" width="100%">Roles:<li>Producer Channel & Service</li></th>
+</table>
+<br>
+<p>Use a POST on the <code>fulfilment/instance/{fulfilmentId}/actions</code> endpoint:</p>
+<pre><code class="lang-http">POST https://api-nxt.dhpbuild.com/api/dhp/v1/fulfilment/instance/{fulfilmentId}/actions
+</code></pre>
+<p>In the request URL, you must include a <code>fulfilmentId</code>, the identifier of the fulfilment instance to which to add the action.</p>
+<p>You must also include a request body with the following structure:</p>
+<pre><code class="lang-json">{
+  &quot;actionTypeId&quot;: &quot;string&quot;,
+  &quot;payload&quot;: {},
+  &quot;actionDate&quot;: &quot;string&quot;
+}
+</code></pre>
+<p>The elements to include are described as follows:</p>
+<ul>
+<li><strong><code>actionTypeId</code>:</strong> The identifier of the action type. The action type ID indicates the action &quot;template&quot;; when one is added to the fulfilment instance, a specific instance of the action is recorded.</li>
+<li><strong><code>payload</code>:</strong> (optional) Any payload data required by the action, structured as a valid JSON object.</li>
+<li><strong><code>actionDate</code>:</strong> The date of the action. This is mainly used for creating <a class="xref" href="api-fulfilment.html#inthepast">fulfilments in the past</a>.</li>
+</ul>
+<p>If the request is successful, Healthanea returns a <code>204</code> status code.</p>
+<h3 id="get-an-action-payload-from-a-fulfilment-instance">Get an action payload from a fulfilment instance</h3>
+<table style="border:1px solid #d3d3d3;">
+<th style="background-color:#FFFFEE;color:#000000" width="100%">Roles:<li>Producer Channel & Service</li></th>
+</table>
+<br>
+<p>Use a GET on the <code>fulfilment/instance/{fulfilmentId}/actions</code> endpoint:</p>
+<pre><code class="lang-http">GET https://api-nxt.dhpbuild.com/api/dhp/v1/fulfilment/instance/{fulfilmentId}/actions/{actionTypeId}
+</code></pre>
+<p>In the request URL, you must include a <code>fulfilmentId</code>, the identifier of the fulfilment instance; and an <code>actionTypeId</code>, the identifier of the action type.</p>
+<p>If the request is successful, Healthanea returns a <code>200</code> HTTP status code and a response body containing the details of the action payload for the last action in the fulfilment having the specified action type ID:</p>
+<pre><code class="lang-json">{
+  &quot;actionId&quot;: &quot;string&quot;,
+  &quot;actionTypeId&quot;: &quot;string&quot;,
+  &quot;timeStamp&quot;: &quot;string&quot;,
+  &quot;payload&quot;: {}
+}
+</code></pre>
+<h3 id="set-context-properties-in-a-fulfilment-instance">Set context properties in a fulfilment instance</h3>
+<table style="border:1px solid #d3d3d3;">
+<th style="background-color:#FFFFEE;color:#000000" width="100%">Roles:<li>Producer Channel & Service</li></th>
+</table>
+<br>
+<p>Use a POST on the <code>fulfilment/instance/{fulfilmentId}/context</code> endpoint:</p>
+<pre><code class="lang-http">POST https://api-nxt.dhpbuild.com/api/dhp/v1/fulfilment/instance/{fulfilmentId}/context
+</code></pre>
+<p>In the request URL, you must include a <code>fulfilmentId</code>, the identifier of the fulfilment instance to which to add the context properties.</p>
+<p>You must also include a request body with the following structure:</p>
+<pre><code class="lang-json">{
+  &quot;properties&quot;: [
+    {
+      &quot;name&quot;: &quot;string&quot;,
+      &quot;value&quot;: &quot;string&quot;
+    }
+  ]
+}
+</code></pre>
+<p>Each <code>properties</code> object includes a <code>name</code> and <code>value</code> that represent key-value pairs defining the context property. For example, a service may detect the language of the end-user's browser and store it as an additional property that can be used later.</p>
+<p>If the request is successful, Healthanea returns a <code>202</code> status code.</p>
+<h2 id="inthepast">Sending service fulfilment data asynchronously</h2>
+<p>You can send data to Healthanea from an end-user’s service fulfilment that occurred in the past. Sending fulfilment data asynchronously is useful on occasions where the fulfilment data failed to send during the service execution.</p>
+<p>This feature can also be used for scheduled data loading or deferring data transfer for services not consuming the Healthanea API in real-time.</p>
+<p>To do this, you create a new fulfilment and set the <code>startDate</code> parameter in the request body to the date of the fulfilment data to send (the time when the fulfilment was active). The date cannot be in the future and it must be within the configured range (by default, three months in the past).</p>
+<p>Subsequently, you create an action for the fulfilment, setting the <code>actionDate</code> parameter in the request body. This date cannot be in the future and must not be older than the fulfilment date.</p>
+<p>In this way, the Healthanea reports and analytics interpret the fulfilment and its actions with the correct date of execution.</p>
+<h2 id="portal">Healthanea portal</h2>
+<p>In the Healthanea portal's <a class="xref" href="../admin-portal/tools-api-explorer.html">API explorer</a>, you can review all the API requests that you have executed.</p>
+<p>In the <a class="xref" href="../admin-portal/tools-data-explorer.html">data explorer</a>, you can review the data exchanges you have executed. In particular, when you create a fulfilment in the past, you see the fulfilment as having been done on the <code>startDate</code>, not on the fulfilment's creation date.</p>
+<h2 id="ts">Troubleshooting</h2>
+<h3 id="the-request-returns-a-400-status-code">The request returns a 400 status code</h3>
+<p>Check the error message; it is most probable that the request did not adhere to the API specification. Also, check that all field limitations are satisfied.</p>
+<p>For a GET request, it can mean that the <code>fulfilmentId</code> and/or  <code>actionTypeId</code> parameter was missing or incorrect in the request URL.</p>
+<h3 id="the-request-returns-a-404-status-code">The request returns a 404 status code</h3>
+<p>There is no record on the Healthanea platform of the <code>fulfilmentId</code> and/or  <code>actionTypeId</code> parameter that you provided in the request URL.</p>
+<h3 id="the-request-returns-a-422-status-code">The request returns a 422 status code</h3>
+<p>This indicates an unprocessable entity; the Healthanea platform is not able to validate the payload. This happens when you tried to create a <a class="xref" href="api-fulfilment.html#inthepast">fulfilment in the past</a> but the <code>startDate</code> you specified exceeds the time limit (by default, three months in the past).</p>
+<p><br><br><br><br></p>
+</article>
+        </div>
+        
+        
+        <div class="hidden-sm col-md-2" role="complementary">
+          <div class="sideaffix">
+            <div class="contribution">
+              <ul class="nav">
+              </ul>
+            </div>
+            <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div class="search-results">
+      <div id="wrapper">
+        <div class="body-content">
+          
+          <div id="search-results">
+            <div class="search-list">Search Results for <span></span></div>
+            <div class="sr-items">
+              <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+            </div>
+            <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+    <script type="text/javascript" src="../../styles/download-swagger-link.js"></script>
+    
+    <!-- mermaid support -->
+    <script type="text/javascript" src="https://unpkg.com/mermaid@8.14.0/dist/mermaid.min.js" integrity="sha384-atOyb0FxAgN9LyAc6PEf9BjgwLISyansgdH8/VXQH8p2o5vfrRgmGIJ2Sg22L0A0" crossorigin="anonymous">
+    </script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: false
+        });
+        mermaid.init(undefined, ".lang-mermaid");
+    </script>
+  </body>
+</html>
