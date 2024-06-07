@@ -1,0 +1,5 @@
+Chunk Model,Chunk Size,Overlap,Embed model,Retrieval Model,Reranker Model,k,Number of queries,Faithfulness,Answer relevancy,Context precision,Framework
+Recursive Text Splitter,1800,20,BAAI/bge-small-en-v1.5,Hybrid Search,Default,1,2,1.0,1.0,1.0,LangChain
+Recursive Text Splitter,1800,25,BAAI/bge-small-en-v1.5,Similarity Search,Default,1,2,1.0,0.9632454763010084,0.9999999999,LangChain
+Character Splitter,1650,25,BAAI/bge-small-en-v1.5,Similarity Search,Default,1,2,1.0,0.9516537427182336,0.9999999999,LangChain
+Recursive Text Splitter,1600,15,BAAI/bge-small-en-v1.5,Hybrid Search,LongContextReorder,3,8,0.9293650793384457,0.9375,0.9525154732174501,LangChain
