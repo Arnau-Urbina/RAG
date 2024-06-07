@@ -1,0 +1,218 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>The feedback action | Healthanea Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="The feedback action | Healthanea Documentation ">
+    <meta name="generator" content="docfx 2.59.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/dhp.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+
+    <aside role="navigation" id="sidebar">
+      <header>
+        
+        <nav class="ng-scope" role="navigation">
+          <div class="navbar-container">
+            <div class="navbar-header">
+              
+              <a class="dhp-navbar-brand" href="../../index.html">
+                <div>
+                  <img id="logo" class="svg" src="../../logo.png" alt="">
+                  <!-- <span>Digital Healthcare Platform</span> -->
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <form class="navbar-form" role="search" id="search">
+            <div class="form-group">
+              <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+            </div>
+          </form>
+        
+          <div class="navbar-collapse" id="navbar">
+              <!-- top level menu -->
+          </div>
+        </nav>
+      </header>
+
+      <div class="sidebar-content">
+        <div class="sidebar-item-separator"></div>
+
+        
+        <div class="sidenav">
+          <div class="sidetoggle" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="footer">
+        <div class="footer-container">
+          <img class="footer-logo" src="../../healthanea.png">
+          <div>
+            <span>&copy; DHP SAS</span>
+            <span id="version"> Version: 160211a-facd43ecf </span>
+          </div>
+        </div>
+      </div>
+    </aside>
+        
+    <main class="main-panel">
+      <div class="main-header-container">
+        <div class="main-header">
+          
+          <div class="subnav navbar navbar-default">
+            <div id="breadcrumb">
+              <ul class="breadcrumb">
+                <li></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="article row grid-right hide-when-search">
+
+
+        <div class="col-md-10">
+        
+          <article class="content wrap" id="_content" data-uid="concept-feedback">
+<h1 id="the-feedback-action">The feedback action</h1>
+
+<p>During an end-user's session in your application, you can request their feedback during the service fulfilment. Individual end-user feedback ratings are aggregated into a report KPI. Healthanea receives feedback ratings by way of the payload of the <em>Feedback</em> global action (see <a class="xref" href="concept-actions.html">Actions</a>).</p>
+<p>Feedback is collected as a value on a scale of 1 (yes or no), 5, 10, or 100. Healthanea stores the feedback score as a relative value by dividing the raw rating by the scale value. For example, a score of 80 out of 100 is stored as a feedback of 0.8. This allows meaningful comparisons between new and legacy feedback ratings in case the feedback scale changes. In our example, the score of 0.8 on a scale of 5 would equivalent to 4 out of 5.</p>
+<p>The feedback action accepts only one feedback payload. If Healthanea receives multiple feedback action payloads in the same fulfilment, only the last valid feedback is taken into consideration in the report KPIs.</p>
+<h2 id="payload-json-schema-and-validation">Payload JSON schema and validation</h2>
+<p>The JSON schema for the feedback action payload is the following:</p>
+<pre><code class="lang-json">{
+    &quot;ScaleType&quot; (mandatory): &quot;string&quot;,
+    &quot;Value&quot; (mandatory): int,
+    &quot;Comment&quot; (optional): &quot;string&quot;,
+    &quot;CommentLang&quot; (optional): &quot;string&quot;
+}
+</code></pre>
+<p>The <code>ScaleType</code> value indicates the scale used for the feedback rating. It can be one of the following:</p>
+<table style="border:1px solid #d3d3d3;">
+<th style="background-color:#FFFFEE;color:#000000" width="35%"><code>ScaleType</code> value</th>
+<th style="background-color:#FFFFEE;color:#000000" width="45%">Scale range</th>
+<th style="background-color:#FFFFEE;color:#000000" width="10%">Scale</th>
+    <tr>
+        <td><code>FeedbackRatingScaleYesOrNo</code></td>
+        <td>Feedback value is 0 or 1, where:
+        <ul>
+        <li>0 is 'no', or negative feedback</li>
+        <li>1 is 'yes', or positive feedback</li>
+        </ul></td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td><code>FeedbackRatingScale1to5</code></td>
+        <td>Feedback value is in the scale of 1 to 5, where:
+        <ul>
+        <li>1 is most negative feedback</li>
+        <li>5 is most positive feedback</li>
+        </ul></td>
+        <td>5</td>
+</tr>
+    <tr>
+        <td><code>FeedbackRatingScale1to10</code></td>
+        <td>Feedback value is in the scale of 1 to 10, where:
+        <ul>
+        <li>1 is most negative feedback</li>
+        <li>10 is most positive feedback</li>
+        </ul></td>
+       <td>10</td>
+</tr>
+    <tr>
+        <td><code>FeedbackRatingScale1to100</code></td>
+        <td>Feedback value is in the scale of 1 to 100, where:
+        <ul>
+        <li>1 is most negative feedback</li>
+        <li>100 is most positive feedback</li>
+        </ul></td>
+        <td>100</td>
+</tr>
+</table>
+<p>Healthanea checks the validity of the payload as follows:</p>
+<ul>
+<li>The payload field in the feedback action must not be empty, and the payload must validate against the JSON schema.</li>
+<li><code>ScaleType</code> must be present and contain a valid value from the four possible values shown in the table above.</li>
+<li><code>Value</code> must not be empty and must contain an integer between 0 and 100.</li>
+</ul>
+<h2 id="feedback-kpi-in-reports">Feedback KPI in reports</h2>
+<p>If the feedback action payload is valid, Healthanea calculates a relative value of the returned feedback rating by dividing the raw value by the feedback scale. The Healthanea reports use only this relative value, and the raw rating returned by the end-user is not stored. In this way, the average of user feedback ratings can be computed even when different feedback scales were previously used.</p>
+<h2 id="see-also">See also</h2>
+<ul>
+<li><a class="xref" href="concept-actions.html">Actions</a></li>
+<li><a class="xref" href="../admin-portal/report-services.html">Services report</a></li>
+</ul>
+<p><br><br><br><br></p>
+</article>
+        </div>
+        
+        
+        <div class="hidden-sm col-md-2" role="complementary">
+          <div class="sideaffix">
+            <div class="contribution">
+              <ul class="nav">
+              </ul>
+            </div>
+            <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div class="search-results">
+      <div id="wrapper">
+        <div class="body-content">
+          
+          <div id="search-results">
+            <div class="search-list">Search Results for <span></span></div>
+            <div class="sr-items">
+              <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+            </div>
+            <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+    <script type="text/javascript" src="../../styles/download-swagger-link.js"></script>
+    
+    <!-- mermaid support -->
+    <script type="text/javascript" src="https://unpkg.com/mermaid@8.14.0/dist/mermaid.min.js" integrity="sha384-atOyb0FxAgN9LyAc6PEf9BjgwLISyansgdH8/VXQH8p2o5vfrRgmGIJ2Sg22L0A0" crossorigin="anonymous">
+    </script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: false
+        });
+        mermaid.init(undefined, ".lang-mermaid");
+    </script>
+  </body>
+</html>

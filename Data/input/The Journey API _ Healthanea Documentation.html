@@ -1,0 +1,254 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>The Journey API | Healthanea Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="The Journey API | Healthanea Documentation ">
+    <meta name="generator" content="docfx 2.59.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/dhp.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+
+    <aside role="navigation" id="sidebar">
+      <header>
+        
+        <nav class="ng-scope" role="navigation">
+          <div class="navbar-container">
+            <div class="navbar-header">
+              
+              <a class="dhp-navbar-brand" href="../../index.html">
+                <div>
+                  <img id="logo" class="svg" src="../../logo.png" alt="">
+                  <!-- <span>Digital Healthcare Platform</span> -->
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <form class="navbar-form" role="search" id="search">
+            <div class="form-group">
+              <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+            </div>
+          </form>
+        
+          <div class="navbar-collapse" id="navbar">
+              <!-- top level menu -->
+          </div>
+        </nav>
+      </header>
+
+      <div class="sidebar-content">
+        <div class="sidebar-item-separator"></div>
+
+        
+        <div class="sidenav">
+          <div class="sidetoggle" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="footer">
+        <div class="footer-container">
+          <img class="footer-logo" src="../../healthanea.png">
+          <div>
+            <span>&copy; DHP SAS</span>
+            <span id="version"> Version: 160211a-facd43ecf </span>
+          </div>
+        </div>
+      </div>
+    </aside>
+        
+    <main class="main-panel">
+      <div class="main-header-container">
+        <div class="main-header">
+          
+          <div class="subnav navbar navbar-default">
+            <div id="breadcrumb">
+              <ul class="breadcrumb">
+                <li></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="article row grid-right hide-when-search">
+
+
+        <div class="col-md-10">
+        
+          <article class="content wrap" id="_content" data-uid="journey-api">
+<h1 id="journey-api">Journey API</h1>
+
+<p><em>See also the <a href="../reference/dhp-front-api-v1.html" title="API specification (Swagger)">API specification (Swagger)</a> and <a class="xref" href="api-error-management.html" title="Error management">Error management</a></em></p>
+<hr>
+
+<p>The Journey API is used by services to report events that occur during a healthcare journey flow. These events are used to build analytic reports that Producers can view in the Healthanea portal to gain insights about the healthcare pathway execution.
+<br><br></p>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>The Journey API is experimental! It must not be used at the same time as the Fulfilment API.
+Contact the Healthanea Customer Success team for guidance.
+<br><br></p>
+</div>
+<p><em>See also:</em></p>
+<ul>
+<li>Concept: <em><a class="xref" href="../concepts/concept-journey.html">Healthcare journey</a></em></li>
+</ul>
+<p><img src="../../assets/images/icon-fulfilment-camera.png" style="width:150px;height:150px;"> <br></p>
+<p>In this article:</p>
+<ul>
+<li><a class="xref" href="api-journey.html#whatis">What is the Journey API?</a></li>
+<li><a class="xref" href="api-journey.html#prep">Preliminary preparation</a></li>
+<li><a class="xref" href="api-journey.html#int">Integration</a></li>
+<li><a class="xref" href="api-journey.html#inthepast">Reporting events asynchronously</a></li>
+<li><a class="xref" href="api-journey.html#portal">Healthanea portal</a></li>
+<li><a class="xref" href="api-journey.html#ts">Troubleshooting</a></li>
+</ul>
+<!-- - [Flow](xref:journey-api#flow) -->
+<h2 id="whatis">What is the Journey API?</h2>
+<p>The Journey API is used by services to report events that occur during a service execution by sending event details to the Healthanea platform. Each event indicates an action taken during the journey by the end-user or a service; for example, service start and stop times. The recorded events are used in aggregate to build the analytic reports that are shown in the Healthanea portal.</p>
+<p>A service needs to identify which events are to be reported and then report them to the Journey API. The Producer can also report events, during or after the service session.</p>
+<p>Note that some end-user events may not be triggered directly by an end-user action; for example, an event may report that a lab result has become available.</p>
+<!--
+## <a id="flow"></a>Flow
+
+<img src="../../assets/images/api-flow-fulfilment.png" style="width:1000px;"> <br>
+-->
+<h2 id="prep">Preliminary preparation</h2>
+<p>The Healthanea Customer Success team will help you to prepare the integration of the Journey API. We will carefully consider your specific use case to determine the following:</p>
+<ul>
+<li>For each of your offered services, we will identify which events are to be reported. We also determine the different event metadata to use, such as the list of event types and taxonomy codes.</li>
+<li>Note that a given event type cannot be associated with any taxonomy code. They must both belong to the same category as defined in the Healthanea taxonomy referential. The Customer Success team will guide you on event type and taxonomy code usage.</li>
+<li>The session ID can be shared across services or service usage, or it can be unique per service or service execution. If shared across services, a mechanism to share it must be designed and implemented by the Producer or the Service Providers. (The session ID must not be shared across multiple journey IDs.)</li>
+<li>The Producer needs to communicate the journey ID to the service so that events can be properly tagged. (The journey ID must not be shared across multiple end-users.)</li>
+<li>Each service can report events in real-time, that is, when the event occurs; or in batch mode; for example, once per day.</li>
+</ul>
+<h2 id="int">Integration</h2>
+<table style="border:1px solid #d3d3d3;">
+<th style="background-color:#FFFFEE;color:#000000" width="100%">Role:<li>Service</li></th>
+</table>
+<br>
+<p>This section describes the endpoint of the Journey API. We assume successful calls to the API; for unsuccessful requests, see <a class="xref" href="api-journey.html#ts">Troubleshooting</a>. <!--For more details, see the tutorial <xref:tutorial-fulfilment>.--></p>
+<h3 id="report-an-event">Report an event</h3>
+<p>Use a POST on the <code>journey/events</code> endpoint:</p>
+<pre><code class="lang-http">POST https://api-nxt.dhpbuild.com/api/dhp/v1/journey/events
+</code></pre>
+<p>You must include a request body with the following structure:</p>
+<pre><code class="lang-json">{
+  &quot;list&quot;: [
+    {
+  &quot;dhpUserId&quot;: &quot;12345678-90ab-4000-8000-abcdef012001&quot;,
+  &quot;sessionId&quot;: &quot;12345678-90ab-4000-8000-abcdef012002&quot;,
+  &quot;journeyId&quot;: &quot;12345678-90ab-4000-8000-abcdef012003&quot;,
+  &quot;eventType&quot;: &quot;12345678-90ab-4000-8000-abcdef012004&quot;,
+  &quot;taxonomyCode&quot;: &quot;12345678-90ab-4000-8000-abcdef012005&quot;,
+  &quot;taxonomyCodeExtension&quot;: &quot;namespace.business-object.property_name&quot;,
+  &quot;occurrenceDateTime&quot;: &quot;2023-03-28T02:19:10&quot;
+    }
+  ]
+}
+</code></pre>
+<p>The identifiers are described as follows:</p>
+<ul>
+<li><strong><code>dhpUserId</code>:</strong> The identifier of the end-user using the service in which the event was reported.</li>
+<li><strong><code>sessionId</code>:</strong> The identifier of the session during which the event is reported. A session links the executions of multiple services by a single end-user in a single journey.</li>
+<li><strong><code>journeyId</code>:</strong> The identifier of the healthcare journey during which the event is reported. Each journey is associated with one end-user and includes at least one session. (The maximum allowed length of the <code>journeyId</code> is 100 characters.)</li>
+<li><strong><code>eventType</code>:</strong> The identifier of the type of event reported in the context of the journey. Defined by Healthanea.</li>
+<li><strong><code>taxonomyCode</code>:</strong> The identifier of the taxonomy of the event. The taxonomy is defined by Healthanea, but you can complement it with a taxonomy code extension (see below).</li>
+<li><strong><code>taxonomyCodeExtension</code>:</strong> (optional) A user-defined complement to the taxonomy. It is a case-sensitive string. The value is neither interpreted nor parsed by Healthanea; it is used as a filter in the reports. (The maximum allowed length of the <code>taxonomyCodeExtension</code> value is 255 characters.)</li>
+<li><strong><code>occurrenceDateTime</code>:</strong> (optional) The date and time in UTC when the event occurred. By specifying a date in the past, this parameter can used for asynchronous sending of events to the Healthanea platform; see <a class="xref" href="api-journey.html#inthepast">Reporting events asynchronously</a>. If this parameter is not provided, then the Healthanea server time is used.</li>
+</ul>
+<p>If the request is successful, Healthanea returns a <code>202</code> status code.</p>
+<h2 id="inthepast">Reporting events asynchronously</h2>
+<p>You can report events in two ways:</p>
+<ul>
+<li>instantly: report each event in real-time as it occurs. This is the default behaviour if the <code>occurrenceDateTime</code> parameter is omitted in the request body.</li>
+<li>in batch mode: send all the events at once, for example, during a nightly process.</li>
+</ul>
+<p>Sending events asynchronously is useful on occasions where the event records failed to send during the service execution. It can also be implemented to allow scheduled data loading or to defer data transfer for services not consuming the Healthanea API in real-time. In batch mode, the Healthanea reports and analytics interpret the events with the correct date and time of occurrence.</p>
+<p>To send events in batch mode, you need to specify the <code>occurenceDateTime</code> parameter in the request body to the required date and time. If this (optional) parameter is not provided, the Healthanea UTC system time (“now”) is recorded.</p>
+<p>Note that it is not necessary to group events by journey ID, DHP user ID, or event type when reporting events in batch mode.</p>
+<h2 id="portal">Healthanea portal</h2>
+<p>In the Healthanea portal's <a class="xref" href="../admin-portal/tools-api-explorer.html">API explorer</a>, you can review all the API requests that you have executed.</p>
+<!--
+In the [data explorer](xref:admin-portal-data-explorer), you can review the data exchanges you have executed, including details about reported events.
+-->
+<h2 id="ts">Troubleshooting</h2>
+<h3 id="the-request-returns-a-400-status-code">The request returns a 400 status code</h3>
+<p>Check the error message; it is most probable that the request did not adhere to the API specification. Also, check that all field limitations are satisfied.</p>
+<h3 id="the-request-returns-a-409-status-code">The request returns a 409 status code</h3>
+<p><em>&quot;This service account (client_id) is not associated with a data controller&quot;</em></p>
+<p>A legacy service account, which does not have an associated data controller (that is, Producer), is not permitted to report events. The service's Service Provider must use the Healthanea portal’s “Service Account” page to link a data controller to the service account.</p>
+<h3 id="the-request-returns-a-422-status-code">The request returns a 422 status code</h3>
+<p><em>&quot;This combination of taxonomyCode %s and eventType %s is not allowed in the event %index. They belong to different categories.&quot;</em></p>
+<p>The event at the position <code>%index</code> in the event list does not respect the category constraints. Check if you passed the correct parameters. If so, contact the Customer Success team for investigation.</p>
+<p><br><br><br><br></p>
+</article>
+        </div>
+        
+        
+        <div class="hidden-sm col-md-2" role="complementary">
+          <div class="sideaffix">
+            <div class="contribution">
+              <ul class="nav">
+              </ul>
+            </div>
+            <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div class="search-results">
+      <div id="wrapper">
+        <div class="body-content">
+          
+          <div id="search-results">
+            <div class="search-list">Search Results for <span></span></div>
+            <div class="sr-items">
+              <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+            </div>
+            <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+    <script type="text/javascript" src="../../styles/download-swagger-link.js"></script>
+    
+    <!-- mermaid support -->
+    <script type="text/javascript" src="https://unpkg.com/mermaid@8.14.0/dist/mermaid.min.js" integrity="sha384-atOyb0FxAgN9LyAc6PEf9BjgwLISyansgdH8/VXQH8p2o5vfrRgmGIJ2Sg22L0A0" crossorigin="anonymous">
+    </script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: false
+        });
+        mermaid.init(undefined, ".lang-mermaid");
+    </script>
+  </body>
+</html>

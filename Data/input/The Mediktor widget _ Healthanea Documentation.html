@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>The Mediktor widget | Healthanea Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="The Mediktor widget | Healthanea Documentation ">
+    <meta name="generator" content="docfx 2.59.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/dhp.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+
+    <aside role="navigation" id="sidebar">
+      <header>
+        
+        <nav class="ng-scope" role="navigation">
+          <div class="navbar-container">
+            <div class="navbar-header">
+              
+              <a class="dhp-navbar-brand" href="../../index.html">
+                <div>
+                  <img id="logo" class="svg" src="../../logo.png" alt="">
+                  <!-- <span>Digital Healthcare Platform</span> -->
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <form class="navbar-form" role="search" id="search">
+            <div class="form-group">
+              <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+            </div>
+          </form>
+        
+          <div class="navbar-collapse" id="navbar">
+              <!-- top level menu -->
+          </div>
+        </nav>
+      </header>
+
+      <div class="sidebar-content">
+        <div class="sidebar-item-separator"></div>
+
+        
+        <div class="sidenav">
+          <div class="sidetoggle" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="footer">
+        <div class="footer-container">
+          <img class="footer-logo" src="../../healthanea.png">
+          <div>
+            <span>&copy; DHP SAS</span>
+            <span id="version"> Version: 160211a-facd43ecf </span>
+          </div>
+        </div>
+      </div>
+    </aside>
+        
+    <main class="main-panel">
+      <div class="main-header-container">
+        <div class="main-header">
+          
+          <div class="subnav navbar navbar-default">
+            <div id="breadcrumb">
+              <ul class="breadcrumb">
+                <li></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="article row grid-right hide-when-search">
+
+
+        <div class="col-md-10">
+        
+          <article class="content wrap" id="_content" data-uid="mediktor-widget">
+<h1 id="the-mediktor-widget">The Mediktor widget</h1>
+
+<p>Healthanea is an API-based platform that does not provide user interfaces. This decision was made at the beginning of the Healthanea project after acknowledging that every Producer may have multiple channels that will always be different. Each Producer Channel will need to be tailored to a specific country, user target, type of business, and so on.</p>
+<p>Therefore, to integrate with Healthanea means to integrate with its APIs. The most fundamental APIs are the <a class="xref" href="../apis/api-universalid.html">Universal ID API</a> that creates a DHP user ID and the <a class="xref" href="../apis/api-fulfilment.html">Fulfilment API</a> that authorizes a service and tracks usage events.</p>
+<p>Nonetheless, as Mediktor is a pre-integrated service which already offers a web UI SDK, the Healthanea team has created a <strong>Service Integration Page for Mediktor</strong>, more commonly known as the Mediktor widget.</p>
+<p>The following diagram shows the differences between the standard approach (option a) and the widget integration pattern (option b):</p>
+<p><img src="../../assets/images/mediktor-widget-archi.png" alt="Mediktor widget"></p>
+<p>The main difference is that instead of integrating directly the service UI (Mediktor Web SDK) and orchestrating the different calls to the Healthanea Fulfilment API, a Producer can call the Integration Page API, providing some configuration parameters, obtain a token and either redirect to to the widget URL or integrate it as an iframe. In both cases the widget token must be provided in the URL as a parameter.</p>
+<p>Once the integration page is launched, the end-user can interact with the Mediktor UI. The generated events are captured by the widget and tracked in Healthanea. A callback (or message in the case of an iframe integration) is called at the end of the symptom checker session so that the Producer can reclaim control and move to the next step in the customer journey.</p>
+<p><br><br><br><br></p>
+</article>
+        </div>
+        
+        
+        <div class="hidden-sm col-md-2" role="complementary">
+          <div class="sideaffix">
+            <div class="contribution">
+              <ul class="nav">
+              </ul>
+            </div>
+            <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div class="search-results">
+      <div id="wrapper">
+        <div class="body-content">
+          
+          <div id="search-results">
+            <div class="search-list">Search Results for <span></span></div>
+            <div class="sr-items">
+              <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+            </div>
+            <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+    <script type="text/javascript" src="../../styles/download-swagger-link.js"></script>
+    
+    <!-- mermaid support -->
+    <script type="text/javascript" src="https://unpkg.com/mermaid@8.14.0/dist/mermaid.min.js" integrity="sha384-atOyb0FxAgN9LyAc6PEf9BjgwLISyansgdH8/VXQH8p2o5vfrRgmGIJ2Sg22L0A0" crossorigin="anonymous">
+    </script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: false
+        });
+        mermaid.init(undefined, ".lang-mermaid");
+    </script>
+  </body>
+</html>

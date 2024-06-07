@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>What is Healthanea? | Healthanea Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="What is Healthanea? | Healthanea Documentation ">
+    <meta name="generator" content="docfx 2.59.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/dhp.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+
+    <aside role="navigation" id="sidebar">
+      <header>
+        
+        <nav class="ng-scope" role="navigation">
+          <div class="navbar-container">
+            <div class="navbar-header">
+              
+              <a class="dhp-navbar-brand" href="../../index.html">
+                <div>
+                  <img id="logo" class="svg" src="../../logo.png" alt="">
+                  <!-- <span>Digital Healthcare Platform</span> -->
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <form class="navbar-form" role="search" id="search">
+            <div class="form-group">
+              <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+            </div>
+          </form>
+        
+          <div class="navbar-collapse" id="navbar">
+              <!-- top level menu -->
+          </div>
+        </nav>
+      </header>
+
+      <div class="sidebar-content">
+        <div class="sidebar-item-separator"></div>
+
+        
+        <div class="sidenav">
+          <div class="sidetoggle" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="footer">
+        <div class="footer-container">
+          <img class="footer-logo" src="../../healthanea.png">
+          <div>
+            <span>&copy; DHP SAS</span>
+            <span id="version"> Version: 160211a-facd43ecf </span>
+          </div>
+        </div>
+      </div>
+    </aside>
+        
+    <main class="main-panel">
+      <div class="main-header-container">
+        <div class="main-header">
+          
+          <div class="subnav navbar navbar-default">
+            <div id="breadcrumb">
+              <ul class="breadcrumb">
+                <li></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="article row grid-right hide-when-search">
+
+
+        <div class="col-md-10">
+        
+          <article class="content wrap" id="_content" data-uid="whatishealthanea">
+<h1 id="what-is-healthanea">What is Healthanea?</h1>
+
+<p>Healthanea is a business-driven, secure, compliant, and scalable platform to allow the orchestration of digital healthcare services, with an emphasis on highly secure data exchange. Healthanea is at the forefront of the next generation of digital healthcare use cases that will increase customer satisfaction and enable powerful insights and research by leveraging data.</p>
+<p>The Healthanea platform is where health services orchestration and management meet with a powerful personalized health data infrastructure:</p>
+<p><img src="../../assets/images/homepage-architecture.png" alt="architecture">
+<br><br><br></p>
+<p>In this article:</p>
+<ul>
+<li><a class="xref" href="intro-whatis.html#portal">The Healthanea portal</a></li>
+<li><a class="xref" href="intro-whatis.html#api">The Healthanea API</a></li>
+<li><a class="xref" href="intro-whatis.html#doc">Documentation and reference</a></li>
+<li><a class="xref" href="intro-whatis.html#widget">The symptom checker widget</a></li>
+</ul>
+<h1 id="portal">The Healthanea portal</h1>
+<p>The platform control centre is the <strong>Healthanea portal</strong>, which allows authorized users to:</p>
+<ul>
+<li>Orchestrate Healthanea assets; for example, manage the collection of services that can be included in a health journey.</li>
+<li>Monitor KPIs through graphical reports that aggregate end-user and service data.</li>
+<li>Manage Healthanea user accounts and API credentials.</li>
+</ul>
+<p>The Healthanea portal is the place where <a class="xref" href="intro-actors.html">Producers and Service Providers</a> can access the information and configurations relevant to them.</p>
+<h2 id="population-statistics-and-kpis">Population statistics and KPIs</h2>
+<p>You can monitor and understand how end-users are engaging with health services in the Healthanea portal. Identify trends on service usage, track the main symptoms given to the symptom checker as well as the main diagnoses, discover the most used customer journeys, find out what people tend to do before and after a specific service, and much more.</p>
+<p>Population KPIs are always aggregated to respect GDPR requirements.</p>
+<h1 id="api">The Healthanea API</h1>
+<p>The backbone of the Healthanea platform is a <strong>REST API</strong>, which enables authenticated users to:</p>
+<ul>
+<li>Orchestrate healthcare services.</li>
+<li>Exchange personal health and non-health data.</li>
+</ul>
+<p>The Healthanea API consists of a collection of microservices that developers use to orchestrate health services in their Healthanea-powered apps. The main API components are the following:</p>
+<h2 id="fulfilment-api">Fulfilment API</h2>
+<p>Before a Service Provider can exchange data for a customer of a Producer at a given moment in time, it must get an authorization, called a fulfilment ID, from the Producer. The Fulfilment API is also used to track the usage of the health services, to allow the personalization of services and the generation of insights.</p>
+<ul>
+<li><a class="xref" href="../concepts/concept-fulfilment.html">Fulfilment concept</a></li>
+<li><a class="xref" href="../apis/api-fulfilment.html">Fulfilment API</a></li>
+</ul>
+<h2 id="health-api">Health API</h2>
+<p>During the execution of a health service, medical data may be generated. Sometimes previous medical data may be used to personalize the service (for example, symptom checker data as input of a teleconsultation session). The Health API is used to exchange medical data in a secure way. The FHIR standard is used to maximize interoperability between services.</p>
+<ul>
+<li><a class="xref" href="../concepts/concept-health.html">Health data exchange concept</a></li>
+<li><a class="xref" href="../apis/api-health.html">Health API</a></li>
+</ul>
+<h2 id="recommendation-api">Recommendation API</h2>
+<p>Healthanea's next-best-action feature can be used to generate a list of recommended services personalized for a specific user based on age, gender, country, past history, and so on. Currently, the Recommendation API's proposals are based on decision tables of business rules.</p>
+<ul>
+<li><a class="xref" href="../concepts/concept-nba.html">Next-best-action concept</a></li>
+<li><a class="xref" href="../apis/api-recommendation.html">Recommendation API</a></li>
+</ul>
+<h2 id="universal-id-api">Universal ID API</h2>
+<p>Data privacy is at the heart of all transactions on the Healthanea platform. All the data in Healthanea is either anonymized or pseudonymized. With the Universal ID API, you can easily manage the identity mapping between Healthanea and your local systems.</p>
+<ul>
+<li><a class="xref" href="../concepts/concept-user-id.html">User identification</a></li>
+<li><a class="xref" href="../apis/api-universalid.html">Universal ID API</a></li>
+</ul>
+<h1 id="doc">Documentation and reference</h1>
+<p>Healthanea comes complete with full documentation of the Healthanea portal and the Healthanea API. The documentation includes reference material, such as:</p>
+<h2 id="healthanea-business-entities-and-roles">Healthanea business entities and roles</h2>
+<p>Learn more about the different business entities - Producer and Service Provider - who act on the Healthanea platform. All users of Healthanea are assigned a role on the platform, and each role has associated permissions. These determine which Healthanea APIs you can call or which features in the Healthanea portal you can access.</p>
+<ul>
+<li><a class="xref" href="../concepts/concept-roles-portal.html">Roles on the Healthanea portal</a></li>
+<li><a class="xref" href="../concepts/concept-roles-api.html">Roles on the Healthanea API</a></li>
+<li><a class="xref" href="intro-actors.html">Healthanea actors and business entities</a></li>
+</ul>
+<h2 id="authentication-with-azure-active-directory">Authentication with Azure Active Directory</h2>
+<p>Microsoft Azure Active Directory (AAD) is a powerful and secure identity-as-a-service (IDaaS) system. Healthanea calls AAD to authenticate and get the access tokens required for the authorization headers in all your Healthanea API calls.</p>
+<ul>
+<li><a class="xref" href="authentication.html">Authentication</a></li>
+</ul>
+<h2 id="glossary">Glossary</h2>
+<p>The Healthanea project is ambitious and therefore complex. Look up the terminology in our exhaustive glossary.</p>
+<ul>
+<li><a class="xref" href="../reference/glossary.html">Glossary</a></li>
+</ul>
+<h1 id="widget">Symptom Checker Widget</h1>
+<p>Do you have a standard symptom checker use case? Do you want to speed up integration and reduce integration and maintenance costs?</p>
+<p>The symptom checker widget is an integration page that prepackages a customized instance of the <strong>Mediktor SDK</strong>. The package includes all the associated Healthanea API calls to create the fulfilment ID and track the events generated by the symptom checker.</p>
+<p>The widget can be used in full screen (redirect to the page) or as part of your web page (integrated in an iframe).</p>
+<ul>
+<li><a class="xref" href="../reference/mediktor-widget.html">Mediktor widget</a></li>
+</ul>
+<p><br><br><br><br></p>
+</article>
+        </div>
+        
+        
+        <div class="hidden-sm col-md-2" role="complementary">
+          <div class="sideaffix">
+            <div class="contribution">
+              <ul class="nav">
+              </ul>
+            </div>
+            <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div class="search-results">
+      <div id="wrapper">
+        <div class="body-content">
+          
+          <div id="search-results">
+            <div class="search-list">Search Results for <span></span></div>
+            <div class="sr-items">
+              <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+            </div>
+            <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+    <script type="text/javascript" src="../../styles/download-swagger-link.js"></script>
+    
+    <!-- mermaid support -->
+    <script type="text/javascript" src="https://unpkg.com/mermaid@8.14.0/dist/mermaid.min.js" integrity="sha384-atOyb0FxAgN9LyAc6PEf9BjgwLISyansgdH8/VXQH8p2o5vfrRgmGIJ2Sg22L0A0" crossorigin="anonymous">
+    </script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: false
+        });
+        mermaid.init(undefined, ".lang-mermaid");
+    </script>
+  </body>
+</html>
