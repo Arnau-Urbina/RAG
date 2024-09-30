@@ -24,9 +24,11 @@ def apis(api, leng, beg, name_api):
         pass
     else: 
         if (api[:3] == beg and len(api) == leng):
-            os.environ[name_api] == api
-        else: 
-            st.write(f"**An incorrect {name_api}, please try to write the api again.**")
+            try: 
+                os.environ[name_api] = api
+                st.write(f"{name_api} was loaded correctly")
+            except:  
+                st.write(f"**An incorrect {name_api}, please try to write the api again.**")
 
 
 
