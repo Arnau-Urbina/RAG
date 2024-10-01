@@ -66,7 +66,7 @@ def tab_metric_Lla():
         retriever = st.session_state['retriever_Llama']
 
         st.write('Scores: ')
-        scores = metrics_Llama(llm_Llama, retriever, questions)
+        #scores = metrics_Llama(llm_Llama, retriever, questions)
         st.write(scores)
         #st.write('We can see the metrics in a graph:')
         #plot_metrics(scores = scores)
